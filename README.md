@@ -11,8 +11,9 @@ However it has a few extensions
 
 - more datasets
 - SGT forecaster
-- TFP STS forecaster
+- TFP STS forecaster (really slow)
 - Fourier extrapolator
+- MicroPrediction fast and slow
 - ensembling with worst predictors removed (trimmed)
 
 ## Dependencies & references

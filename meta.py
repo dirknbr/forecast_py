@@ -7,6 +7,7 @@ from datasets import *
 from metrics import *
 from trend import TrendForecaster
 from sgt import SGT
+from micro import Micro
 from tfp_sts import TfpSts
 from prophet_model import ProphetModel
 from fourex import FourierExtrap
@@ -37,7 +38,8 @@ models = [NaiveForecaster,
           AutoARIMA, 
           ProphetModel, 
           SGT, 
-          ThetaForecaster, 
+          ThetaForecaster,
+          Micro, 
           # TfpSts(), 
           FourierExtrap, 
           RecencyForecaster
@@ -48,22 +50,24 @@ for i, data in enumerate(datas):
   test = tests[i]
   sp = sps[i]
   for j, model in enumerate(models):
-  	if j == 3: # exp smoothing
-  	  model_inst = model('add')
-  	elif j == 8: # theta
-  	  model_inst = model(deseasonalize=False) 
-  	else:
-  	  model_inst = model()
-  	if hasattr(model_inst, 'sp'):
-  	  model_inst.sp = sp
-  	model_inst.fit(data.y[train])
-  	pred = model_inst.predict(fh)
-  	# record mae and r2
-  	err = mae(data.y[test], np.array(pred))
-  	c = corr(data.y[test], np.array(pred))
-  	b = bias(data.y[test], pred)
-  	results.append((i, model_inst, err, c, b))
-  	print(i, model_inst, err, c, b)
+    if j == 3: # exp smoothing
+      model_inst = model('add')
+    elif j == 8: # theta
+      model_inst = model(deseasonalize=False) 
+    elif j == 9:
+      model_inst = model(k=max(fh))
+    else:
+      model_inst = model()
+    if hasattr(model_inst, 'sp'):
+      model_inst.sp = sp
+    model_inst.fit(data.y[train])
+    pred = model_inst.predict(fh)
+    # record mae and r2
+    err = mae(data.y[test], np.array(pred))
+    c = corr(data.y[test], np.array(pred))
+    b = bias(data.y[test], pred)
+    results.append((i, model_inst, err, c, b))
+    print(i, model_inst, err, c, b)
 
 df = pd.DataFrame(results)
 df.to_csv('results.csv')
