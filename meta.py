@@ -12,6 +12,8 @@ from tfp_sts import TfpSts
 from prophet_model import ProphetModel
 from fourex import FourierExtrap
 from recency import RecencyForecaster
+from diff_tree import *
+from pop import *
 
 import pandas as pd
 
@@ -42,7 +44,9 @@ models = [NaiveForecaster,
           Micro, 
           # TfpSts(), 
           FourierExtrap, 
-          RecencyForecaster
+          RecencyForecaster,
+          DiffTree, 
+          PoPForecaster
           ]
 
 for i, data in enumerate(datas):
@@ -54,8 +58,10 @@ for i, data in enumerate(datas):
       model_inst = model('add')
     elif j == 8: # theta
       model_inst = model(deseasonalize=False) 
-    elif j == 9:
+    elif j == 9: # micro
       model_inst = model(k=max(fh))
+    elif j == 12: # difftree
+      model_inst = model(fh=fh)
     else:
       model_inst = model()
     if hasattr(model_inst, 'sp'):
