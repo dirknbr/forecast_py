@@ -30,6 +30,11 @@ class TestDatasets(unittest.TestCase):
     self.assertEqual(len(data), 731)
     self.assertEqual(len(list(data)), 1)
 
+  def test_oil_data(self):
+    data = load_oil_data()
+    self.assertEqual(len(data), 505)
+    self.assertEqual(len(list(data)), 1)
+
   def test_co2_data(self):
     data = load_co2_data()
     self.assertEqual(len(data), 2225)

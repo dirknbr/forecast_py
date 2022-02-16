@@ -52,6 +52,14 @@ def load_btc_data():
   data.index.freq = 'D'
   return pd.DataFrame(data['y'])
 
+def load_oil_data():
+  # https://aroussi.com/post/python-yahoo-finance
+  goog = yf.Ticker('CL=F')  
+  data = goog.history(start='2020-01-01', end='2021-12-31')
+  data['y'] = data.Close
+  # data.index.freq = 'D'
+  return pd.DataFrame(data['y'])
+
 def load_co2_data():
   # https://scikit-learn.org/stable/auto_examples/gaussian_process/plot_gpr_co2.html
   # weekly data
