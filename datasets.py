@@ -26,11 +26,11 @@ def load_weekly_data(n=100):
   df.index = pd.date_range('2020-01-01', periods=n, freq='W')
   return df
 
-def load_zero_bound_data(n=100, p=.1):
+def load_zero_bound_data(n=100, p=.2):
   # some of the obs are zero
   np.random.seed(22)
   pos = np.random.binomial(1, (1 - p), n)
-  y = np.random.normal(5, 1, n) * pos
+  y = (.1 * np.arange(n) + np.random.normal(5, 1, n)) * pos
   print('0s', np.sum(y == 0))
   df = pd.DataFrame({'y': y})
   df.index = pd.date_range('2020-01-01', periods=n)

@@ -16,6 +16,8 @@ However it has a few extensions
 - MicroPrediction fast and slow
 - Diffencing and RF multi output
 - Period on period growth
+- Greykite/Silverkite
+- Online Bandit approach
 - ensembling with worst predictors removed (trimmed)
 
 ## Dependencies & references
@@ -25,6 +27,7 @@ However it has a few extensions
 - https://alkaline-ml.com/pmdarima/
 - https://facebook.github.io/prophet/docs/quick_start.html
 - https://pydlm.github.io/
+- https://github.com/linkedin/greykite
 - https://github.com/microprediction/timemachines
 - https://microprediction.github.io/timeseries-elo-ratings/html_leaderboards/univariate-k_001.html
 - https://docs.pymc.io/en/v3/pymc-examples/examples/time_series/Air_passengers-Prophet_with_Bayesian_workflow.html
@@ -33,8 +36,10 @@ However it has a few extensions
 - https://www.unofficialgoogledatascience.com/2017/04/our-quest-for-robust-time-series.html
 - https://www.statsmodels.org/dev/generated/statsmodels.tsa.forecasting.stl.STLForecast.html
 - https://juanitorduz.github.io/gp_ts_pymc3/
+- https://towardsdatascience.com/multi-step-time-series-forecasting-with-arima-lightgbm-and-prophet-cc9e3f95dfb0
 
 ## Out of scope
 
 - multivariate or X variables
+
 
